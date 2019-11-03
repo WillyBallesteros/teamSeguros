@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using teamSegurosApi.Models;
 
 namespace teamSegurosApi.Data
@@ -24,6 +25,23 @@ namespace teamSegurosApi.Data
             : base(options)
         {
             this.Database.EnsureCreated();
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+
+            var seedData = new SeedData();
+            modelBuilder.Entity<Ciudad>().HasData(seedData.GetCiudades().ToArray());
+            modelBuilder.Entity<Rol>().HasData(seedData.GetRol().ToArray());
+            modelBuilder.Entity<TipoDocumento>().HasData(seedData.GetTipoDocumento().ToArray());
+            modelBuilder.Entity<Marca>().HasData(seedData.GetMarcas().ToArray());
+            modelBuilder.Entity<Modelo>().HasData(seedData.GetModelo().ToArray());
+
+
+
+
+
         }
     }
 }
