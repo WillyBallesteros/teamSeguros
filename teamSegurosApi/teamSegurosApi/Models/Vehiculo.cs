@@ -10,7 +10,7 @@ namespace teamSegurosApi.Models
         public Guid MarcaId { get; set; }
         public virtual Marca Marca { get; set; }
         public Guid ModeloId { get; set; }
-        public virtual Modelo Modelo { get; set; }
+
         [Min(2000)]
         public int Año { get; set; }
         [Required]

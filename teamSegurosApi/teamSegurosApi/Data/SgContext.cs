@@ -9,7 +9,7 @@ namespace teamSegurosApi.Data
         public DbSet<Ciudad> Ciudades { get; set; }
         public DbSet<Marca> Marcas { get; set; }
 
-        public DbSet<Modelo> Modeloss { get; set; }
+        public DbSet<Modelo> Modelos { get; set; }
 
         public DbSet<Rol> Roles { get; set; }
 

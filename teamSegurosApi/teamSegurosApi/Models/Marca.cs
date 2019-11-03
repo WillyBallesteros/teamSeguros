@@ -9,5 +9,7 @@ namespace teamSegurosApi.Models
         [Required]
         [StringLength(50)]
         public string Nombre { get; set; }
+
     }
+
 }

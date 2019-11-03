@@ -10,5 +10,8 @@ namespace teamSegurosApi.Models
         public virtual Marca Marca { get; set; }
 
         public string Nombre { get; set; }
+
     }
+
+
 }
