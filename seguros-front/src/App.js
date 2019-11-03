@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { NavItem, Navbar, Dropdown, Divider } from "react-materialize";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar brand={<a />} alignLinks="right">
+        <NavItem href="">Getting started</NavItem>
+        <NavItem href="components.html">Components</NavItem>
+        <Dropdown trigger={<a />}>
+          <a href="#">one</a>
+          <a href="#">two</a>
+          <Divider />
+          <a href="#">three</a>
+        </Dropdown>
+      </Navbar>
     </div>
   );
 }
