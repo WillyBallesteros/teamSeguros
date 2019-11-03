@@ -7,7 +7,7 @@ namespace teamSegurosApi.Models
         public Guid Id { get; set; }
         public Guid MarcaId { get; set; }
 
-        public virtual Vehiculo Vehiculo { get; set; }
+        public virtual Marca Marca { get; set; }
 
         public string Nombre { get; set; }
     }
