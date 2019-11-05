@@ -7,7 +7,7 @@ using teamSegurosApi.Models;
 
 namespace teamSegurosApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v2/[controller]")]
     [ApiController]
     public class CiudadController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace teamSegurosApi.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPut]
         public void UpdateCity(Ciudad ciudad)
         {
             var city = _context.Ciudades.FirstOrDefault(x => x.Id == ciudad.Id);

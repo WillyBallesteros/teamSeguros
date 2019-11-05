@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System;
 using teamSegurosApi.Data;
-
 namespace teamSegurosApi
 {
     public class Startup
@@ -32,6 +32,12 @@ namespace teamSegurosApi
                     maxRetryDelay: TimeSpan.FromSeconds(10),
                     errorNumbersToAdd: null);
                 }));
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "My API V2", Version = "V2" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +46,17 @@ namespace teamSegurosApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                // Enable middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+
+                {
+                    c.SwaggerEndpoint("/swagger/v2/swagger.json", "My API V2");
+                });
+
+
+
             }
 
             app.UseHttpsRedirection();
@@ -52,6 +69,7 @@ namespace teamSegurosApi
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
