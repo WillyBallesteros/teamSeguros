@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using teamSegurosApi.Data;
 using teamSegurosApi.Models;
+using teamSegurosApi.Services;
 
 namespace teamSegurosApi.Controllers
 {
@@ -11,42 +10,36 @@ namespace teamSegurosApi.Controllers
     [ApiController]
     public class CiudadController : ControllerBase
     {
-        private SgContext _context;
-        public CiudadController(SgContext sgContext)
+        private readonly CiudadService _ciudadService;
+        public CiudadController(CiudadService ciudadService)
         {
-            _context = sgContext;
+            _ciudadService = ciudadService;
         }
 
         [HttpGet]
         public IEnumerable<Ciudad> GetAll()
         {
-            return _context.Ciudades.ToList();
+            return _ciudadService.GetCiudades();
         }
 
         [HttpPost]
         public void SaveCity(Ciudad ciudad)
         {
 
-            _context.Ciudades.Add(ciudad);
-            _context.SaveChanges();
+            _ciudadService.SaveCiudad(ciudad);
 
         }
 
         [HttpPut]
         public void UpdateCity(Ciudad ciudad)
         {
-            var city = _context.Ciudades.FirstOrDefault(x => x.Id == ciudad.Id);
-            city.Nombre = ciudad.Nombre;
-            _context.SaveChanges();
-
+            _ciudadService.UpdateCity(ciudad);
         }
 
         [HttpDelete]
         public void DeleteCity(Guid id)
         {
-            var city = _context.Ciudades.FirstOrDefault(x => x.Id == id);
-            _context.Ciudades.Remove(city);
-            _context.SaveChanges();
+            _ciudadService.DeleteCity(id);
 
         }
 
